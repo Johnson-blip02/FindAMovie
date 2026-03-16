@@ -14,14 +14,13 @@ let db;
 async function connectDB() {
   try {
     await client.connect();
-    db = client.db("movieDB"); 
+    db = client.db("movieDB");
     console.log("Connected to MongoDB Atlas!");
   } catch (err) {
     console.error("MongoDB connection error:", err);
   }
 }
 
-// Import routes and pass the db
 connectDB().then(() => {
   const moviesRouter = require("./routes/movie")(db);
   app.use("/movies", moviesRouter);

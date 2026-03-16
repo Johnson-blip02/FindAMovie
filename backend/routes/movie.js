@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 
 module.exports = (db) => {
-  // GET all movies
   router.get("/", async (req, res) => {
     try {
       const movies = await db.collection("movieCollection").find().toArray();
@@ -14,17 +13,15 @@ module.exports = (db) => {
 
   router.get("/random", async (req, res) => {
     try {
-      const genre = req.query.genre; // ?genre=Horror
-      const exclude = req.query.exclude; // ?exclude=Drugs,Gore
+      const genre = req.query.genre;
+      const exclude = req.query.exclude;
 
       let movies = await db.collection("movieCollection").find().toArray();
 
-      // Filter by genre
       if (genre) {
         movies = movies.filter((movie) => movie.genre.includes(genre));
       }
 
-      // Filter by warnings
       if (exclude) {
         const excludedWarnings = exclude.split(",");
 

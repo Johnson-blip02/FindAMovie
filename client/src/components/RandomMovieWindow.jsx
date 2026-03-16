@@ -36,14 +36,12 @@ export default function RandomMovieWindow({ genre, excludedWarnings }) {
       <CardContent>
         <Typography variant="h6">{movie.name}</Typography>
 
-        {/* Genre chips */}
         <Box sx={{ display: "flex", gap: 1, flexWrap: "wrap", marginTop: 1 }}>
           {movie.genre.map((g, index) => (
             <Chip key={index} label={g} size="small" />
           ))}
         </Box>
 
-        {/* Warning chips */}
         <Box sx={{ display: "flex", gap: 1, flexWrap: "wrap", marginTop: 1 }}>
           {movie.warning.map((w, index) => (
             <Chip
